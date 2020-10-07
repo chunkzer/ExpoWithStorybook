@@ -1,12 +1,15 @@
 import { StatusBar } from 'expo-status-bar';
 import React from 'react';
 import { SafeAreaProvider } from 'react-native-safe-area-context';
+import { ENV_CONSTANTS } from './environment';
+const { STORYBOOK } = ENV_CONSTANTS;
 
 import useCachedResources from './hooks/useCachedResources';
 import useColorScheme from './hooks/useColorScheme';
 import Navigation from './navigation';
+import StorybookUI from './storybook';
 
-export default function App() {
+const App = () => {
   const isLoadingComplete = useCachedResources();
   const colorScheme = useColorScheme();
 
@@ -20,4 +23,6 @@ export default function App() {
       </SafeAreaProvider>
     );
   }
-}
+};
+
+export default STORYBOOK ? StorybookUI : App;
